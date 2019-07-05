@@ -1,6 +1,14 @@
 # jsxs
 A collection of tools and shortcuts for augmenting your JavaScript programming experience
 
+# Usage
+Start a REPL:
+```
+npm start
+
+jsxs>
+```
+
 # Shortcuts
 *In life there are no shortcuts. Luckily, if your life is JavaScript, this is no longer the case.*
 

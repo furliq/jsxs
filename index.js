@@ -1,9 +1,8 @@
-require('./src');
-
+const lib = require('./src');
 const repl = require("repl");
 
-let r = repl.start({
+let replServer = repl.start({
   prompt: "jsxs> ",
   useGlobal: true
 });
-Object.assign(r.context, require('./src/globals'));
+Object.assign(replServer.context, { ...lib });

@@ -1,6 +1,6 @@
 {
   "name": "jsxs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of tools and shortcuts to augment the JavaScript programming experience.",
   "main": "index.js",
   "scripts": {

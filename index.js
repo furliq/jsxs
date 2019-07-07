@@ -5,7 +5,4 @@ let replServer = repl.start({
   prompt: "jsxs> ",
   useGlobal: true
 });
-Object.assign(replServer.context, {
-  mods: lib.mods,
-  ...lib.globals
-});
+Object.assign(replServer.context, { ...lib });

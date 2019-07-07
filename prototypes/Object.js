@@ -26,9 +26,11 @@ module.exports = Object.defineProperties({}, {
             return Object.getOwnPropertyDescriptors(this.__proto__)
         }
     }),
-    meta: defineAccessor(() => {
-        Object.defineProperty(Object.prototype, 'meta', {
-            get() { return Object.getOwnPropertyDescriptors(this) }
-        })
-    })
+    meta: {
+        get: () => {
+            Object.defineProperty(Object.prototype, 'meta', {
+                get() { return Object.getOwnPropertyDescriptors(this) }
+            })
+        }
+    }
 });

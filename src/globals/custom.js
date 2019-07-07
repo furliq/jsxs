@@ -1,19 +1,3 @@
-Array.prototype.at = function (index) {
-    return this[index];
-}
-
-Array.prototype.isEmpty = function () {
-    return this.length === 0;
-}
-
-Array.prototype.shuffle = function () {
-    return this.sort(() => Math.random() - 0.5);
-}
-
-Array.prototype.distinct = function () {
-    return Array.from(new Set(this));
-}
-
 Array.range = function (start, end = null, step = 1) {
     if(!end) return Array(start).fill(null).map((x, i) => i);
     else if(end <= start) {
@@ -27,4 +11,10 @@ Array.range = function (start, end = null, step = 1) {
         start += step
     }
     return _
+}
+
+module.exports = {
+    set: (...args) => new Set(args),
+    map: (iter) => new Map(iter),
+    range: Array.range
 }

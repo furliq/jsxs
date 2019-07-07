@@ -1,8 +1,7 @@
-const { extract } = require('./util')
-const prototypes = require('../prototypes')
-const mods = Object.keys(extract(prototypes))
+const {extract} = require('./util')
+const prototypes = extract(require('../mods'))
+const mods = Object.keys(prototypes)
 const globals = require('./globals')
-const { meta } = require('../prototypes/Object')
 
 module.exports = {
     ...globals, mods

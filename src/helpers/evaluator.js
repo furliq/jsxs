@@ -9,28 +9,29 @@ function toRequire(input) {
 
     if (isSpecific) {
         if (input.includes('as')) {
+            // import * as myModule from './fileName'
             if (input.includes('*')) {
-                // only supports: import * as X from 'file' (for now)
                 const name = input.split(/(from|as)/)[2].trim();
                 str = `const ${name} = require('${file}')`;
             }
+            // import {varX as aliasX, varY as aliasY} from './fileName'
             else {
-                const imports = input.split(/(import|from)/)[2].trim().replace(/[\{\}]/g, '').split(/,/)
+                const imports = input.split(/(import|from)/)[2].trim()
+                    .replace(/[\{\}]/g, '').split(/,/)
                     .map(x => x.split('as').map(x => x.trim()));
-                const vars = imports.map(x => x[0]);
-                const aliases = imports.map(x => x[1]);
+                const [vars, aliases] = [imports.map(x => x[0]), imports.map(x => x[1])];
                 const varList = vars.join(',');
-
-                console.log(vars, aliases);
-                str = `let {${varList}} = require('${file}'); const [${aliases.join(',')}] = [${varList}]`;
-                console.log(str);
+                const aliasList = aliases.join(',');
+                str = `let {${varList}} = require('${file}'); const [${aliasList}] = [${varList}]`;
             }
         }
+        // import {x, y} from './myFile'
         else {
-            const vars = input.match(/{.*}/)[0];
+            const vars = input.match(/{.*}/).shift();
             str = `const ${vars} = require('${file}')`;
         }
     }
+    // import './myFile'
     else {
         str = `require('${file}')`;
     }
@@ -48,11 +49,11 @@ module.exports = function (cmd, context, filename, cb) {
     try {
         if (isImport(cmd)) {
             cmd = toRequire(cmd);
-            // console.log(cmd);
         }
         result = vm.runInThisContext(cmd);
     } catch (e) {
-        if (isRecoverable(e)) console.log(e.name + ': ' + e.message);
+        if (isRecoverable(e))
+            console.log(e.name + ': ' + e.message);
         else console.error(e);
     }
     cb(null, result);

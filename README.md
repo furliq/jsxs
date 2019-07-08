@@ -12,8 +12,8 @@ jsxs>
 ## Shortcuts
 *In life there are no shortcuts. Luckily, if JavaScript is your life, this is no longer the case.*
 ### Aliases for all your favorite js built-ins
+Object:
 ```
-// Object
   const o = {}
   keys(o) => Object.keys(o) 
   values(o) => Object.values(o)
@@ -30,8 +30,9 @@ jsxs>
   defineProperties => Object.defineProperties
   getProto => Object.getPrototypeOf
   setProto => Object.setPrototypeOf
-  
-// Math
+```
+Math:
+```
   max(1,2,3) => Math.max(1,2,3)
   min([3,2,1]) => Math.min(3,2,1)
   
@@ -39,8 +40,9 @@ jsxs>
   floor => Math.floor
   ceil => Math.ceil
   round => Math.round
-  
-// Custom
+```
+Custom:
+```
   Object.spread(o) => ({ ...o })
   Array.rest(iterable) => [...iterable]
   Array.range(3) => [0, 1, 2]

@@ -7,13 +7,20 @@ function defineAccessor(getter, setter) {
     }
 }
 
-function extract(object) {
-    return Object.assign(
-        {}, 
-        ...Object.keys(object)
-            .map(key => ({ ...object[key] })
-        )
-    )
+function getters(props) {
+    return Object.defineProperties(
+        {},
+        Object.assign({}, 
+            ...Object.keys(props)
+            .map(x => ({
+                [x]: defineAccessor(props[x])
+            }))
+        ),
+    );
+}
+
+function extract(obj) {
+    return ({ ...obj });
 }
 
 function coalesce(args){
@@ -21,5 +28,5 @@ function coalesce(args){
 }
 
 module.exports = {
-    defineAccessor, extract, coalesce
+    defineAccessor, getters, extract, coalesce
 }
